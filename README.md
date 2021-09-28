@@ -1,22 +1,8 @@
-# Tailwind CSS Install Process
+# Typescript & Tailwind CSS Install Process
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Node.js
-
-Install tailwindcss, postcss, autoprefixer, webpack(+cil) + npm i tailwindcss postcss-cli postcss-import --D
-Making postcss.config.js / webpack.config.js (+tailwind.config.js) / src > tailwind.css
-Add package.json > script > "tailwind": "postcss ./tailwind.css -o src/index.css" 
-    and checking devDependencies
-Add webpack.config.js > module > rules
-Add tailwind.config.js > purge > './src/**/*.html',
-     './src/**/*.js',
-Add App.js > import './tailwind.css';
-npm i
-npm run tailwind
-npm run build
-npm run start
-
+# Typescript
 
 ## Update Node.js & npm latest version
 
@@ -26,17 +12,17 @@ Check Node.js & npm latest version
 1) Open terminal app
 2) `sudo npm install -g n`
 3) `sudo n latest`
-4) Check version 
+4) Check version  
 `node -v`
 
 ### npm
 1) Open terminal app
 2) `sudo npm install -g n`
 3) Check version 
-`npm -v`
-*) Install specific version
-`sudo npm install -g n <version>`
-    ex. `sudo npm install -g n 7.24.0`
+`npm -v`  
+* Install specific version  
+`sudo npm install -g n <version>`  
+    * ex. `sudo npm install -g n 7.24.0`
 
 
 ## Create react app
@@ -44,68 +30,144 @@ Check Node.js & npm latest version
 Launches the test runner in the interactive watch mode.\
 See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### `npx create-react-app <app-name> --typescript`
-ex. `npx create-react-app text-test --typescript`
+### `npx create-react-app <app-name> --typescript`  
+* ex. `npx create-react-app text-test --typescript`
 
 ### Open VScode > terminal [control + `]
 1) `npm i`
 2) `npm run build`
-3) `npm run start`
+3) `npm run start`   
 Check running command on packgage.json before start project
-
-*) reset
+* reset
 `control + c`
 
-## Install
-tailwindcss, postcss(+cil), autoprefixer, webpack(+cil)
-`npm install -D tailwindcss@latest postcss@latest autoprefixer@latest`
-`npm i tailwindcss postcss-cli postcss-import --D`
+# Tailwind CSS
 
-### Create config files
-postcss.config.js
-webpack.config.js
-tailwind.config.js `npx tailwindcss init`
-
-src > tailwind.css
-
-
+## Install all packages
+tailwindcss, postcss(+cli, loader, import), autoprefixer 
+```
+npm install -D tailwindcss@latest
+npm install -D postcss@latest
+npm install -D autoprefixer@latest
+npm install -D postcss-loader
+npm i postcss-cli postcss-import --D
+```
 
 
+Check **package.json** > devDependencies  
+```json
+  "devDependencies": {
+    "autoprefixer": "^10.3.6",
+    "postcss": "^8.3.8",
+    "postcss-cli": "^9.0.0",
+    "postcss-import": "^14.0.2",
+    "postcss-loader": "^6.1.1",
+    "tailwindcss": "^2.2.16"
+  }
+  ```
+**package.json** > scripts >   
+Add `"tailwind": "postcss ./tailwind.css -o src/index.css"  `  
+* ex.
+```json
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "tailwind": "postcss ./tailwind.css -o src/index.css"
+  },
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Create config files
+### postcss.config.js  
+(create myself)
+```js
+    // postcss.config.js
+    module.exports = {
+      plugins: [
+        require('postcss-import'),
+        tailwindcss('./tailwind.config.js')
+      ]
+    }
+```
+### webpack.config.js  
+(create myself)
+```js
+const webpack = require('webpack');
+module.exports = {
+  mode: 'development',
+  entry: {
+    app: '',
+  },
+  output: {
+    path: '',
+    filename: '',
+    publicPath: '',
+  },
+  module: {
+    rules: [
+        {
+            test: /.jsx?$/,
+            include: [path.resolve(__dirname, "src")],
+            exclude: [path.resolve(__dirname, "node_modules")],
+            loader: "babel-loader",
+        },
+        {
+            test: /.css?$/,
+            exclude: [],
+            //로더는 오른쪽부터 읽어들이므로 postcss-loader를 맨 오른쪽에 넣어준다.
+            use: ["style-loader", "css-loader", "postcss-loader"],
+        },
+    ],
+  },
+  plugins: [],
+  optimization: {},
+  resolve: {
+    modules: ['node_modules'],
+    extensions: ['.js', '.json', '.jsx', '.css'],
+  },
+};
+```
+### tailwind.config.js  
+`npx tailwindcss init` and Add in **purge**
+```js
+module.exports = {
+  purge: [
+    './src/**/*.html',
+     './src/**/*.js',
+  ],
+  darkMode: false, // or 'media' or 'class'
+  theme: {
+    extend: {},
+  },
+  variants: {
+    extend: {},
+  },
+  plugins: [],
+}
+```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+## Create tailwind.css (in src)
+```css
+/* tailwind.css */
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+```
 
-## Learn More
+## App.js 
+Add `import './tailwind.css';`  
+* ex.
+```js
+import logo from './logo.svg';
+import './App.css';
+import './tailwind.css'
+```
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## Run Project
+1) `npm i  `
+2) `npm run tailwind  `
+3) `npm run build  `
+4) `npm run start  `
