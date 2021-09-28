@@ -1,35 +1,76 @@
-# Getting Started with Create React App
+# Tailwind CSS Install Process
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+## Node.js
 
-In the project directory, you can run:
+Install tailwindcss, postcss, autoprefixer, webpack(+cil) + npm i tailwindcss postcss-cli postcss-import --D
+Making postcss.config.js / webpack.config.js (+tailwind.config.js) / src > tailwind.css
+Add package.json > script > "tailwind": "postcss ./tailwind.css -o src/index.css" 
+    and checking devDependencies
+Add webpack.config.js > module > rules
+Add tailwind.config.js > purge > './src/**/*.html',
+     './src/**/*.js',
+Add App.js > import './tailwind.css';
+npm i
+npm run tailwind
+npm run build
+npm run start
 
-### `npm start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Update Node.js & npm latest version
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+Check Node.js & npm latest version
 
-### `npm test`
+### Node.js 
+1) Open terminal app
+2) `sudo npm install -g n`
+3) `sudo n latest`
+4) Check version 
+`node -v`
+
+### npm
+1) Open terminal app
+2) `sudo npm install -g n`
+3) Check version 
+`npm -v`
+*) Install specific version
+`sudo npm install -g n <version>`
+    ex. `sudo npm install -g n 7.24.0`
+
+
+## Create react app
 
 Launches the test runner in the interactive watch mode.\
 See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### `npm run build`
+### `npx create-react-app <app-name> --typescript`
+ex. `npx create-react-app text-test --typescript`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Open VScode > terminal [control + `]
+1) `npm i`
+2) `npm run build`
+3) `npm run start`
+Check running command on packgage.json before start project
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+*) reset
+`control + c`
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Install
+tailwindcss, postcss(+cil), autoprefixer, webpack(+cil)
+`npm install -D tailwindcss@latest postcss@latest autoprefixer@latest`
+`npm i tailwindcss postcss-cli postcss-import --D`
 
-### `npm run eject`
+### Create config files
+postcss.config.js
+webpack.config.js
+tailwind.config.js `npx tailwindcss init`
+
+src > tailwind.css
+
+
+
+
 
 **Note: this is a one-way operation. Once you `eject`, you can’t go back!**
 
