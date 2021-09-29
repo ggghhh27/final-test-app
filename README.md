@@ -46,11 +46,10 @@ Check running command on packgage.json before start project
 ## Install all packages
 tailwindcss, postcss(+cli, loader, import), autoprefixer 
 ```
-npm install -D tailwindcss@latest
-npm install -D postcss@latest
-npm install -D autoprefixer@latest
-npm install -D postcss-loader
-npm i postcss-cli postcss-import --D
+npm i -D tailwindcss@latest
+npm i -D postcss@latest
+npm i -D autoprefixer@latest
+npm i postcss-loader postcss-cli postcss-import --D
 ```
 
 
@@ -80,6 +79,25 @@ Add `"tailwind": "postcss ./tailwind.css -o src/index.css"  `
 
 
 ## Create config files
+### tailwind.config.js  
+`npx tailwindcss init` and Add in **purge**
+```js
+module.exports = {
+  purge: [
+    './src/**/*.html',
+     './src/**/*.js',
+  ],
+  darkMode: false, // or 'media' or 'class'
+  theme: {
+    extend: {},
+  },
+  variants: {
+    extend: {},
+  },
+  plugins: [],
+}
+```
+
 ### postcss.config.js  
 (create myself)
 ```js
@@ -129,27 +147,12 @@ module.exports = {
   },
 };
 ```
-### tailwind.config.js  
-`npx tailwindcss init` and Add in **purge**
-```js
-module.exports = {
-  purge: [
-    './src/**/*.html',
-     './src/**/*.js',
-  ],
-  darkMode: false, // or 'media' or 'class'
-  theme: {
-    extend: {},
-  },
-  variants: {
-    extend: {},
-  },
-  plugins: [],
-}
-```
 
 
-## Create tailwind.css (in src)
+## Create tailwind.css
+`npx tailwindcss -o tailwind.css`  
+
+and Create tailwind.css in src
 ```css
 /* tailwind.css */
 @import "tailwindcss/base";
