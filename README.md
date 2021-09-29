@@ -47,7 +47,7 @@ Check running command on packgage.json before start project
 tailwindcss, postcss(+cli, loader, import), autoprefixer 
 ```
 npm install -D tailwindcss@latest postcss@latest autoprefixer@latest
-npm i postcss-loader postcss-cli postcss-import --D
+npm i postcss-cli postcss-import --D
 ```
 
 
@@ -58,7 +58,6 @@ Check **package.json** > devDependencies
     "postcss": "^8.3.8",
     "postcss-cli": "^9.0.0",
     "postcss-import": "^14.0.2",
-    "postcss-loader": "^6.1.1",
     "tailwindcss": "^2.2.16"
   }
   ```
