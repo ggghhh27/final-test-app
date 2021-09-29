@@ -46,9 +46,7 @@ Check running command on packgage.json before start project
 ## Install all packages
 tailwindcss, postcss(+cli, loader, import), autoprefixer 
 ```
-npm i -D tailwindcss@latest
-npm i -D postcss@latest
-npm i -D autoprefixer@latest
+npm install -D tailwindcss@latest postcss@latest autoprefixer@latest
 npm i postcss-loader postcss-cli postcss-import --D
 ```
 
@@ -101,13 +99,15 @@ module.exports = {
 ### postcss.config.js  
 (create myself)
 ```js
-    // postcss.config.js
-    module.exports = {
-      plugins: [
-        require('postcss-import'),
-        tailwindcss('./tailwind.config.js')
-      ]
-    }
+// postcss.config.js
+var tailwindcss = require('tailwindcss');
+
+module.exports = {
+  plugins: [
+    require('postcss-import'),
+    tailwindcss('./tailwind.config.js')
+  ]
+}
 ```
 ### webpack.config.js  
 (create myself)
