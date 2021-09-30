@@ -77,37 +77,10 @@ Add `"tailwind": "postcss ./tailwind.css -o src/index.css"  `
 
 ## Create config files
 ### tailwind.config.js  
-`npx tailwindcss init` and Add in **purge**
-```js
-module.exports = {
-  purge: [
-    './src/**/*.html',
-     './src/**/*.js',
-  ],
-  darkMode: false, // or 'media' or 'class'
-  theme: {
-    extend: {},
-  },
-  variants: {
-    extend: {},
-  },
-  plugins: [],
-}
-```
-
 ### postcss.config.js  
-(create myself)
-```js
-// postcss.config.js
-var tailwindcss = require('tailwindcss');
+`npx tailwindcss init -p`  
+`npx tailwindcss init --full`
 
-module.exports = {
-  plugins: [
-    require('postcss-import'),
-    tailwindcss('./tailwind.config.js')
-  ]
-}
-```
 ### webpack.config.js  
 (create myself)
 ```js
