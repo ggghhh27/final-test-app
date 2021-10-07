@@ -1,8 +1,4 @@
-# Typescript & Tailwind CSS Install Process
-
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-
-# Typescript
+# Node.js & npm & React App
 
 ## Update Node.js & npm latest version
 
@@ -146,3 +142,13 @@ import './tailwind.css'
 2) `npm run tailwind  `
 3) `npm run build  `
 4) `npm run start  `
+
+***
+
+# Typescript
+
+## [install](https://www.typescriptlang.org/download)  
+
+# Tailwind CSS with Next.js
+
+## [install](https://tailwindcss.com/docs/guides/nextjs)
