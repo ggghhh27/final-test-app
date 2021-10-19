@@ -13,7 +13,8 @@ Check Node.js & npm latest version
 
 ### npm
 1) Open terminal app
-2) `sudo npm install -g n`
+2) Upgrade npm version  
+`sudo npm install -g npm`
 3) Check version 
 `npm -v`  
 * Install specific version  
